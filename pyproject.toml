@@ -1,0 +1,10 @@
+[project]
+name = "onedrive-exif-fixer"
+version = "0.1.0"
+description = "Fix or create EXIF taken dates for OneDrive uploads."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = []
+
+[project.scripts]
+onedrive-exif-fixer = "onedrive_exif_fixer.cli:main"
