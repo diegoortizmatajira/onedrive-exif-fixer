@@ -1,0 +1,38 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "OneDrive EXIF Fixer: Dry-run",
+            "type": "python",
+            "request": "launch",
+            "module": "onedrive_exif_fixer.cli",
+            "args": [
+                "${input:targetPath}",
+                "--dry-run",
+                "--report",
+                "${workspaceFolder}/dry-run-report.csv"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "OneDrive EXIF Fixer: Apply",
+            "type": "python",
+            "request": "launch",
+            "module": "onedrive_exif_fixer.cli",
+            "args": [
+                "${input:targetPath}"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ],
+    "inputs": [
+        {
+            "id": "targetPath",
+            "type": "promptString",
+            "description": "Path to file or directory to process",
+            "default": "${workspaceFolder}"
+        }
+    ]
+}

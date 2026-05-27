@@ -8,3 +8,10 @@ dependencies = []
 
 [project.scripts]
 onedrive-exif-fixer = "onedrive_exif_fixer.cli:main"
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["--import-mode=prepend"]

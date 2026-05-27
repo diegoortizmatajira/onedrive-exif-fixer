@@ -45,7 +45,12 @@ class ExifToolService:
         Max seconds to wait for exiftool commands.
     """
 
-    def __init__(self, parser: DateParser, exiftool_path: str = "exiftool", timeout_seconds: int = 30) -> None:
+    def __init__(
+        self,
+        parser: DateParser,
+        exiftool_path: str = "exiftool",
+        timeout_seconds: int = 30,
+    ) -> None:
         self._parser = parser
         self._exiftool_path = exiftool_path
         self._timeout_seconds = timeout_seconds
@@ -76,7 +81,9 @@ class ExifToolService:
         other_dates = self._extract_other_dates(metadata, taken)
         return ExifMetadata(taken=taken, other_dates=tuple(other_dates))
 
-    def write_all_dates(self, file_path: Path, date_value: datetime, overwrite_original: bool) -> None:
+    def write_all_dates(
+        self, file_path: Path, date_value: datetime, overwrite_original: bool
+    ) -> None:
         """Write the provided datetime to all EXIF date fields.
 
         Parameters
@@ -113,7 +120,9 @@ class ExifToolService:
         except subprocess.TimeoutExpired as exc:
             raise ExifToolError(f"Exiftool command timed out for {args}.") from exc
         except subprocess.CalledProcessError as exc:
-            raise ExifToolError(f"Exiftool command failed: {exc.stderr.strip()}") from exc
+            raise ExifToolError(
+                f"Exiftool command failed: {exc.stderr.strip()}"
+            ) from exc
         return completed.stdout
 
     def _extract_taken(self, metadata: dict[str, object]) -> ParsedDate | None:

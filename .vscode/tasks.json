@@ -1,0 +1,29 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Tests: Pytest",
+            "type": "shell",
+            "command": "uv run pytest -q",
+            "group": "test",
+            "problemMatcher": []
+        },
+        {
+            "label": "Tests: Pytest (single)",
+            "type": "shell",
+            "command": "uv run pytest -q ${input:testTarget}",
+            "group": "test",
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "id": "testTarget",
+            "type": "promptString",
+            "description": "Pytest target (e.g., tests/test_date_parsing.py::test_parse_exact_exif_date)",
+            "default": "tests"
+        }
+    ]
+}

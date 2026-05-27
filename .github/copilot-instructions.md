@@ -8,9 +8,8 @@
 
 ## Build, test, lint
 
-- Run tests: `python -m unittest discover -s tests -p "test_*.py"`
-- Run a single test:
-  `python -m unittest tests.test_date_parsing.DateParsingTests.test_parse_exact_exif_date`
+- Run tests: `pytest`
+- Run a single test: `pytest tests/test_date_parsing.py::test_parse_exact_exif_date`
 
 ## Architecture (big picture)
 

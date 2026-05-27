@@ -16,9 +16,13 @@ class ExifTool(Protocol):
 
     def read_metadata(self, file_path: Path) -> ExifMetadata:
         """Read metadata from a file."""
+        pass
 
-    def write_all_dates(self, file_path: Path, date_value: datetime, overwrite_original: bool) -> None:
+    def write_all_dates(
+        self, file_path: Path, date_value: datetime, overwrite_original: bool
+    ) -> None:
         """Write all EXIF date fields to a file."""
+        pass
 
 
 class DateSource(str, Enum):
@@ -133,7 +137,9 @@ class FileProcessor:
             should_update=candidate is not None,
         )
 
-    def _select_candidate(self, file_path: Path, metadata: ExifMetadata) -> DateCandidate | None:
+    def _select_candidate(
+        self, file_path: Path, metadata: ExifMetadata
+    ) -> DateCandidate | None:
         if metadata.other_dates:
             oldest = min(metadata.other_dates, key=lambda item: item.value)
             return DateCandidate(

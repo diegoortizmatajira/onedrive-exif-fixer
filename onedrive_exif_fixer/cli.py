@@ -53,21 +53,29 @@ def main(argv: list[str] | None = None) -> int:
     report_path = Path(args.report) if args.report else Path("dry-run-report.csv")
     if args.dry_run:
         with CsvReporter(report_path) as reporter:
-            _process_files(files, processor, exiftool, args.overwrite_original, reporter)
+            _process_files(
+                files, processor, exiftool, args.overwrite_original, reporter
+            )
     else:
         _process_files(files, processor, exiftool, args.overwrite_original, None)
     return 0
 
 
 def _build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Fix or create EXIF taken dates for OneDrive uploads.")
+    parser = argparse.ArgumentParser(
+        description="Fix or create EXIF taken dates for OneDrive uploads."
+    )
     parser.add_argument("path", help="File or directory to process.")
     parser.add_argument(
         "--config",
         default=str(DEFAULT_CONFIG_PATH),
         help=f"Path to configuration JSON (default: {DEFAULT_CONFIG_PATH}).",
     )
-    parser.add_argument("--dry-run", action="store_true", help="Do not modify files; output a CSV report.")
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Do not modify files; output a CSV report.",
+    )
     parser.add_argument("--report", help="CSV output path for dry-run mode.")
     parser.add_argument(
         "--overwrite-original",
@@ -116,7 +124,7 @@ def _process_files(
             logging.info("Skipping %s (taken date already present).", file_path)
             continue
 
-        exiftool.write_all_dates(file_path, decision.candidate.value, overwrite_original)
-        logging.info(
-            "Updated %s using %s.", file_path, decision.candidate.source.value
+        exiftool.write_all_dates(
+            file_path, decision.candidate.value, overwrite_original
         )
+        logging.info("Updated %s using %s.", file_path, decision.candidate.source.value)
