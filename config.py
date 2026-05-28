@@ -1,11 +1,9 @@
-from __future__ import annotations
-
 from dataclasses import dataclass
 import json
 from pathlib import Path
 from typing import Iterable
 
-DEFAULT_CONFIG_PATH = Path(__file__).resolve().parents[1] / "config.json"
+DEFAULT_CONFIG_PATH = Path(__file__).resolve().parent / "config.json"
 
 
 @dataclass(frozen=True)

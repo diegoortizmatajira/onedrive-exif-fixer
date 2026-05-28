@@ -1,15 +1,13 @@
-from __future__ import annotations
-
 import argparse
 import logging
 from pathlib import Path
 from typing import Iterable
 
-from .config import DEFAULT_CONFIG_PATH, load_config
-from .date_parsing import DateParser
-from .exiftool_service import ExifToolError, ExifToolService
-from .processor import FileProcessor
-from .reporting import CsvReporter
+from config import DEFAULT_CONFIG_PATH, load_config
+from date_parsing import DateParser
+from exiftool_service import ExifToolError, ExifToolService
+from processor import FileProcessor
+from reporting import CsvReporter
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -128,3 +126,7 @@ def _process_files(
             file_path, decision.candidate.value, overwrite_original
         )
         logging.info("Updated %s using %s.", file_path, decision.candidate.source.value)
+
+
+if __name__ == "__main__":
+    exit(main())

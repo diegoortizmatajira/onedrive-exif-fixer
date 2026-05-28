@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from dataclasses import dataclass
 from datetime import datetime
 import json
@@ -7,7 +5,7 @@ from pathlib import Path
 import subprocess
 from typing import Iterable
 
-from .date_parsing import DateParser, ParsedDate
+from date_parsing import DateParser, ParsedDate
 
 _TAKEN_TAGS: tuple[str, ...] = ("DateTimeOriginal", "SubSecDateTimeOriginal")
 

@@ -3,11 +3,25 @@ name = "onedrive-exif-fixer"
 version = "0.1.0"
 description = "Fix or create EXIF taken dates for OneDrive uploads."
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.13"
 dependencies = []
 
 [project.scripts]
-onedrive-exif-fixer = "onedrive_exif_fixer.cli:main"
+onedrive-exif-fixer = "cli:main"
+
+[build-system]
+requires = ["setuptools>=65.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = [
+  "cli",
+  "config",
+  "date_parsing",
+  "exiftool_service",
+  "processor",
+  "reporting",
+]
 
 [project.optional-dependencies]
 dev = ["pydebug>=1.0.3", "pylint>=4.0.2", "pytest>=9.0.0"]

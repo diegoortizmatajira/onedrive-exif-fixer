@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum
@@ -7,8 +5,8 @@ import os
 from pathlib import Path
 from typing import Callable, Protocol
 
-from .date_parsing import DateParser, ParsedDate
-from .exiftool_service import ExifMetadata
+from date_parsing import DateParser, ParsedDate
+from exiftool_service import ExifMetadata
 
 
 class ExifTool(Protocol):
@@ -16,13 +14,13 @@ class ExifTool(Protocol):
 
     def read_metadata(self, file_path: Path) -> ExifMetadata:
         """Read metadata from a file."""
-        pass
+        ...
 
     def write_all_dates(
         self, file_path: Path, date_value: datetime, overwrite_original: bool
     ) -> None:
         """Write all EXIF date fields to a file."""
-        pass
+        ...
 
 
 class DateSource(str, Enum):

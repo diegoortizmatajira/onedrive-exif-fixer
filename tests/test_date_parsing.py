@@ -1,8 +1,8 @@
-"""Unit tests for the DateParser class in onedrive_exif_fixer.date_parsing."""
+"""Unit tests for the DateParser class in date_parsing."""
 
 from datetime import datetime
 
-from onedrive_exif_fixer.date_parsing import DateParser
+from date_parsing import DateParser
 
 
 def test_parse_exact_exif_date() -> None:

@@ -1,12 +1,10 @@
-from __future__ import annotations
-
 import csv
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import TextIO
+from typing import Self, TextIO
 
-from .processor import DateSource, FileDecision
+from processor import DateSource, FileDecision
 
 _OUTPUT_DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
 
@@ -25,7 +23,7 @@ class CsvReporter:
     _handle: TextIO | None = None
     _writer: csv.DictWriter | None = None
 
-    def __enter__(self) -> CsvReporter:
+    def __enter__(self) -> Self:
         self._handle = self.path.open("w", newline="", encoding="utf-8")
         self._writer = csv.DictWriter(
             self._handle,
@@ -54,8 +52,14 @@ class CsvReporter:
         """
 
         if self._writer is None:
-            raise RuntimeError("CsvReporter is not initialized. Use within a context manager.")
-        current_taken = _format_datetime(decision.current_taken.value) if decision.current_taken else ""
+            raise RuntimeError(
+                "CsvReporter is not initialized. Use within a context manager."
+            )
+        current_taken = (
+            _format_datetime(decision.current_taken.value)
+            if decision.current_taken
+            else ""
+        )
         if decision.candidate is None:
             source = DateSource.NOT_FOUND.value
             new_value = ""

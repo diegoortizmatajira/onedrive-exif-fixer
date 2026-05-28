@@ -3,9 +3,9 @@
     "configurations": [
         {
             "name": "OneDrive EXIF Fixer: Dry-run",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
-            "module": "onedrive_exif_fixer.cli",
+            "program": "${workspaceFolder}/cli.py",
             "args": [
                 "${input:targetPath}",
                 "--dry-run",
@@ -13,18 +13,16 @@
                 "${workspaceFolder}/dry-run-report.csv"
             ],
             "console": "integratedTerminal",
-            "justMyCode": true
         },
         {
             "name": "OneDrive EXIF Fixer: Apply",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
-            "module": "onedrive_exif_fixer.cli",
+            "program": "${workspaceFolder}/cli.py",
             "args": [
                 "${input:targetPath}"
             ],
             "console": "integratedTerminal",
-            "justMyCode": true
         }
     ],
     "inputs": [
@@ -32,7 +30,7 @@
             "id": "targetPath",
             "type": "promptString",
             "description": "Path to file or directory to process",
-            "default": "${workspaceFolder}"
+            "default":"/home/storage/Diego-Ortiz/OneDrive/Pictures/Camera Roll/2012/20120815/img036.jpg"
         }
     ]
 }

@@ -1,12 +1,12 @@
-"""Unit tests for the FileProcessor class in the onedrive_exif_fixer module."""
+"""Unit tests for the FileProcessor class in the processor module."""
 
 from datetime import datetime
 from pathlib import Path
 from types import SimpleNamespace
 
-from onedrive_exif_fixer.date_parsing import DateParser, ParsedDate
-from onedrive_exif_fixer.exiftool_service import ExifMetadata
-from onedrive_exif_fixer.processor import DateSource, FileProcessor
+from date_parsing import DateParser, ParsedDate
+from exiftool_service import ExifMetadata
+from processor import DateSource, FileProcessor
 
 
 class FakeExifTool:
