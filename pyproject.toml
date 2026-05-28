@@ -10,8 +10,14 @@ dependencies = []
 onedrive-exif-fixer = "onedrive_exif_fixer.cli:main"
 
 [project.optional-dependencies]
-dev = ["pytest>=7.0"]
+dev = ["pydebug>=1.0.3", "pylint>=4.0.2", "pytest>=9.0.0"]
+
+[tool.pylint]
+init-hook = "import sys; sys.path.insert(0, \".\")"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = ["--import-mode=prepend"]
+
+[tool.uv]
+package = true
