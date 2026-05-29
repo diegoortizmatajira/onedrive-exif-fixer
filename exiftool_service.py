@@ -8,6 +8,7 @@ from typing import Iterable
 from date_parsing import DateParser, ParsedDate
 
 _TAKEN_TAGS: tuple[str, ...] = ("DateTimeOriginal", "SubSecDateTimeOriginal")
+_EXCLUDED_TAGS: tuple[str, ...] = ("ProfileDateTime", "SourceFile")
 
 
 class ExifToolError(RuntimeError):
@@ -97,7 +98,8 @@ class ExifToolService:
         formatted = date_value.strftime("%Y:%m:%d %H:%M:%S")
         args = [f"-AllDates={formatted}"]
         if overwrite_original:
-            args.append("-overwrite_original")
+            args.append("-overwrite_original_in_place")
+            args.append("-delete_original")
         args.append(str(file_path))
         self._run(args)
 
@@ -138,7 +140,7 @@ class ExifToolService:
     ) -> list[ParsedDate]:
         other_dates: list[ParsedDate] = []
         for tag, raw_value in metadata.items():
-            if tag == "SourceFile" or tag in _TAKEN_TAGS:
+            if tag == "SourceFile" or tag in _TAKEN_TAGS or tag in _EXCLUDED_TAGS:
                 continue
             if not isinstance(raw_value, str):
                 continue
